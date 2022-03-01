@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import Login from './Components/Login';
+import MyLogin from './Components/myLogin';
 import { GlobalStyle, Conteiner } from './global';
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
       <Conteiner>
         <h1>hello world</h1>
       </Conteiner> */}
-      <Login></Login>
+      <MyLogin />
     </>
   );
 }
