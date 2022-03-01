@@ -1,6 +1,9 @@
 import React from 'react';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import validationSchema from '../utils/validationSchema';
+import Errors from './errors';
+
+//  ! https://formik.org/docs/examples/with-material-ui
 
 function MyLogin() {
   //
@@ -12,32 +15,26 @@ function MyLogin() {
     <div>
       <Formik
         onSubmit={onSubmit}
-        // validationSchema={validationSchema}
-        // validateOnMount
+        validationSchema={validationSchema}
+        validateOnMount
         initialValues={{
           email: '',
           senha: '',
         }}
       >
-        {() => (
+        {({ errors }) => (
           <Form>
             <br />
             <label htmlFor="email">Email</label>
             <br />
             <Field id="email" name="email" type="email" className="input" />
-            <ErrorMessage
-              name="questionaryNumber"
-              component={(e) => <h1>{e}</h1>}
-            />
+            {errors.email && <Errors>{errors.email}</Errors>}
             <br />
             <br />
             <label htmlFor="senha">Senha</label>
             <br />
             <Field id="senha" name="senha" type="password" className="input" />
-            <ErrorMessage
-              name="questionaryNumber"
-              component={() => <h1></h1>}
-            />
+            {errors.senha && <Errors>{errors.senha}</Errors>}
             <br />
             <br />
             <button type="submit">enviar</button>
