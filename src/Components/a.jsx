@@ -32,19 +32,30 @@ function Copyright(props) {
     </Typography>
   );
 }
+
 const theme = createTheme();
 
-const WithMaterialUI = () => {
+export default function Login() {
   const formik = useFormik({
     initialValues: {
       email: '',
-      senha: '',
+      password: '',
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log(values);
+      alert(JSON.stringify(values, null, 2));
     },
   });
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   // eslint-disable-next-line no-console
+  //   console.log({
+  //     email: data.get('email'),
+  //     password: data.get('password'),
+  //   });
+  // };
 
   return (
     <ThemeProvider theme={theme}>
@@ -76,53 +87,55 @@ const WithMaterialUI = () => {
               alignItems: 'center',
             }}
           >
-            <Avatar sx={{ mt: 15, mb: 1, bgcolor: 'secondary.main' }}></Avatar>
+            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}></Avatar>
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
 
-            <form onSubmit={formik.handleSubmit}>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-                value={formik.values.email}
-                onChange={formik.handleChange}
-                error={Boolean(formik.errors.email)}
-                helperText={formik.errors.email}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="senha"
-                label="senha"
-                type="password"
-                id="senha"
-                autoComplete="current-senha"
-                value={formik.values.senha}
-                onChange={formik.handleChange}
-                error={Boolean(formik.errors.senha)}
-                helperText={formik.errors.senha}
-              />
-              <Button
-                color="primary"
-                variant="contained"
-                fullWidth
-                type="submit"
-                sx={{ mt: 3, mb: 2 }}
-                // disabled={
-                //   Boolean(formik.errors.email) || Boolean(formik.errors.senha)
-                // }
-              >
-                Submit
-              </Button>
-            </form>
+            {/* <Box
+              component="form"
+              noValidate
+              onSubmit={handleSubmit}
+              sx={{ mt: 1 }}
+            > */}
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={formik.touched.email && formik.errors.email}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              error={formik.touched.password && Boolean(formik.errors.password)}
+              helperText={formik.touched.password && formik.errors.password}
+            />
+
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              // disabled={!isValid}
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign In
+            </Button>
             <Copyright sx={{ mt: 5 }} />
           </Box>
           {/* </Box> */}
@@ -130,6 +143,4 @@ const WithMaterialUI = () => {
       </Grid>
     </ThemeProvider>
   );
-};
-
-export default WithMaterialUI;
+}

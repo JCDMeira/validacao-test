@@ -3,8 +3,6 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import validationSchema from '../utils/validationSchema';
 import Errors from './errors';
 
-//  ! https://formik.org/docs/examples/with-material-ui
-
 function MyLogin() {
   //
   const onSubmit = (values, actions) => {
