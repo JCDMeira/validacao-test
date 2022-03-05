@@ -116,9 +116,9 @@ const WithMaterialUI = () => {
                 fullWidth
                 type="submit"
                 sx={{ mt: 3, mb: 2 }}
-                // disabled={
-                //   Boolean(formik.errors.email) || Boolean(formik.errors.senha)
-                // }
+                disabled={
+                  Boolean(formik.errors.email) || Boolean(formik.errors.senha)
+                }
               >
                 Submit
               </Button>
