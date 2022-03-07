@@ -6,7 +6,24 @@ import Errors from './errors';
 function MyLogin() {
   //
   const onSubmit = (values, actions) => {
-    console.log(values, actions);
+    console.log(values);
+  };
+
+  const validate = (values) => {
+    const errors = {};
+    if (!values.email) errors.email = 'E-mail é obrigatório';
+    const emailSemEspaços = values.email.trim();
+    if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(emailSemEspaços) &&
+      values.email !== ''
+    )
+      errors.email = 'Insira um e-mail válido';
+
+    if (!values.senha) errors.senha = 'Senha é obrigatória';
+    if (values.senha.length < 8 && values.senha !== '')
+      errors.senha = 'Senha precisa ter pelo menos 8 caracteres';
+
+    return errors;
   };
 
   return (
@@ -14,6 +31,7 @@ function MyLogin() {
       <Formik
         onSubmit={onSubmit}
         validationSchema={validationSchema}
+        // validate={validate}
         validateOnMount
         initialValues={{
           email: '',
@@ -26,18 +44,23 @@ function MyLogin() {
             <label htmlFor="email">Email</label>
             <br />
             <Field id="email" name="email" type="email" className="input" />
-            {errors.email && <Errors>{errors.email} - sem ErrorMessage</Errors>}
+            {/* {errors.email && <Errors>{errors.email} - sem ErrorMessage</Errors>} */}
             <ErrorMessage name="email" component={Errors} />
             <br />
             <br />
             <label htmlFor="senha">Senha</label>
             <br />
             <Field id="senha" name="senha" type="password" className="input" />
-            {errors.senha && <Errors>{errors.senha} - sem ErrorMessage</Errors>}
+            {/* {errors.senha && <Errors>{errors.senha} - sem ErrorMessage</Errors>} */}
             <ErrorMessage name="senha" component={Errors} />
             <br />
             <br />
-            <button type="submit">enviar</button>
+            <button
+              type="submit"
+              disabled={Object.keys(errors).length > 0 ? true : false}
+            >
+              enviar
+            </button>
           </Form>
         )}
       </Formik>

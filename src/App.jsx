@@ -7,8 +7,8 @@ import { GlobalStyle, Conteiner } from './global';
 function App() {
   return (
     <>
-      <Login />
-      {/* <MyLogin /> */}
+      {/* <Login /> */}
+      <MyLogin />
     </>
   );
 }
