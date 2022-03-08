@@ -1,10 +1,16 @@
 import React from 'react';
 import P from 'prop-types';
 
-function Errors({ children }) {
+function Errors({ msg = '', children = '' }) {
+  // console.log(msg !== '' ? msg : children);
+
+  const text = msg !== '' ? msg : children;
+  const [menssagem, aviso] = text.split('. ');
+
   return (
     <div>
-      <span style={{ color: 'red' }}>{children}</span>
+      <span style={{ color: 'red' }}>{menssagem}</span>
+      {aviso ? <p style={{ color: 'red' }}>{aviso}</p> : ''}
     </div>
   );
 }
@@ -12,5 +18,6 @@ function Errors({ children }) {
 export default Errors;
 
 Errors.propTypes = {
-  children: P.string.isRequired,
+  msg: P.string,
+  children: P.string,
 };

@@ -5,7 +5,7 @@ import Errors from './errors';
 
 function MyLogin() {
   //
-  const onSubmit = (values, actions) => {
+  const onSubmit = (values) => {
     console.log(values);
   };
 
@@ -33,6 +33,7 @@ function MyLogin() {
         validationSchema={validationSchema}
         // validate={validate}
         validateOnMount
+        validateOnChange
         initialValues={{
           email: '',
           senha: '',
@@ -44,14 +45,18 @@ function MyLogin() {
             <label htmlFor="email">Email</label>
             <br />
             <Field id="email" name="email" type="email" className="input" />
-            {/* {errors.email && <Errors>{errors.email} - sem ErrorMessage</Errors>} */}
+            {/* {errors.email && (
+              <Errors msg={`${errors.email} - sem ErrorMessage`} />
+            )} */}
             <ErrorMessage name="email" component={Errors} />
             <br />
             <br />
             <label htmlFor="senha">Senha</label>
             <br />
             <Field id="senha" name="senha" type="password" className="input" />
-            {/* {errors.senha && <Errors>{errors.senha} - sem ErrorMessage</Errors>} */}
+            {/* {errors.senha && (
+              <Errors msg={`${errors.senha} - sem ErrorMessage`} />
+            )} */}
             <ErrorMessage name="senha" component={Errors} />
             <br />
             <br />
