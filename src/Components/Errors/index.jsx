@@ -1,5 +1,6 @@
 import React from 'react';
 import P from 'prop-types';
+import * as S from './style';
 
 function Errors({ msg = '', children = '' }) {
   // console.log(msg !== '' ? msg : children);
@@ -8,10 +9,10 @@ function Errors({ msg = '', children = '' }) {
   const [menssagem, aviso] = text.split('. ');
 
   return (
-    <div>
-      <span style={{ color: 'red' }}>{menssagem}</span>
-      {aviso ? <p style={{ color: 'red' }}>{aviso}</p> : ''}
-    </div>
+    <>
+      <S.ErrorSpan style={{ color: 'red' }}>{menssagem}</S.ErrorSpan>
+      {aviso ? <S.ErrorSpan style={{ color: 'red' }}>{aviso}</S.ErrorSpan> : ''}
+    </>
   );
 }
 

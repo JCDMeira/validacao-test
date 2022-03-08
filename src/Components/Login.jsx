@@ -11,8 +11,9 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import { ErrorMessage, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import validationSchema from '../utils/validationSchema';
+import Errors from './Errors';
 
 function Copyright(props) {
   return (
@@ -94,8 +95,9 @@ const WithMaterialUI = () => {
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 error={Boolean(formik.errors.email)}
-                helperText={formik.errors.email}
+                // helperText={formik.errors.email}
               />
+              {formik.errors.email && <Errors msg={`${formik.errors.email}`} />}
               <TextField
                 margin="normal"
                 required
@@ -108,8 +110,10 @@ const WithMaterialUI = () => {
                 value={formik.values.senha}
                 onChange={formik.handleChange}
                 error={Boolean(formik.errors.senha)}
-                helperText={formik.errors.senha}
+                // helperText={formik.errors.senha}
               />
+
+              {formik.errors.senha && <Errors msg={`${formik.errors.senha}`} />}
               <Button
                 color="primary"
                 variant="contained"

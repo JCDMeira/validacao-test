@@ -1,7 +1,7 @@
 import React from 'react';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import validationSchema from '../utils/validationSchema';
-import Errors from './errors';
+import Errors from './Errors';
 
 function MyLogin() {
   //
