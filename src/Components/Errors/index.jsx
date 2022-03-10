@@ -11,6 +11,7 @@ function Errors({ msg = '', children = '' }) {
   return (
     <>
       <S.ErrorSpan style={{ color: 'red' }}>{menssagem}</S.ErrorSpan>
+      {aviso ? <br /> : ''}
       {aviso ? <S.ErrorSpan style={{ color: 'red' }}>{aviso}</S.ErrorSpan> : ''}
     </>
   );
