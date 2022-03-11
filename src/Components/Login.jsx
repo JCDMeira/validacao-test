@@ -12,8 +12,34 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { useFormik } from 'formik';
-import validationSchema from '../utils/validationSchema';
+// import validationSchema from '../utils/validationSchema';
 import Errors from './Errors';
+
+import * as Yup from 'yup';
+
+const validationsSchemaTest = Yup.object().shape({
+  email: Yup.string()
+    .test(
+      'eamil',
+      `Insira um e-mail válido. E verifique se não há espaços ao final do seu e-mail`,
+      (value) => {
+        const valueTreated = value.trim();
+
+        if (
+          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(valueTreated) &&
+          value !== ''
+        ) {
+          return false;
+        } else {
+          return true;
+        }
+      },
+    )
+    .required('Esse é um campo obrigatório'),
+  senha: Yup.string()
+    .min(8, 'Senha deve ter no mínimo 8 caracteres')
+    .required('Esse é um campo obrigatório'),
+});
 
 function Copyright(props) {
   return (
@@ -42,9 +68,13 @@ const WithMaterialUI = () => {
       senha: '',
     },
     // validateOnMount: true,
-    validationSchema: validationSchema,
+    validationSchema: validationsSchemaTest,
     onSubmit: (values) => {
-      console.log(values);
+      const valuesTreated = {
+        email: values.email.trim(),
+        senha: values.senha,
+      };
+      console.log(valuesTreated);
     },
   });
 
