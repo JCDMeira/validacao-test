@@ -20,7 +20,7 @@ import * as Yup from 'yup';
 const validationsSchemaTest = Yup.object().shape({
   email: Yup.string()
     .test(
-      'eamil',
+      'email',
       `Insira um e-mail válido. E verifique se não há espaços ao final do seu e-mail`,
       (value) => {
         const valueTreated = value.trim();
