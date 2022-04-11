@@ -1,37 +1,35 @@
 import React from 'react';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
-import validationSchema from '../utils/validationSchema';
-import Errors from './Errors';
+import { Field, Form, Formik } from 'formik';
 
 function MyLogin() {
-  //
   const onSubmit = (values) => {
     console.log(values);
   };
 
   const validate = (values) => {
     const errors = {};
-    if (!values.email) errors.email = 'E-mail é obrigatório';
-    const emailSemEspaços = values.email.trim();
-    if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(emailSemEspaços) &&
-      values.email !== ''
-    )
-      errors.email = 'Insira um e-mail válido';
 
-    if (!values.senha) errors.senha = 'Senha é obrigatória';
-    if (values.senha.length < 8 && values.senha !== '')
+    if (!values.email) {
+      errors.email = 'E-mail é requerido';
+    }
+    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+      errors.email = 'E-mail inválido';
+    }
+
+    if (!values.senha) {
+      errors.senha = 'Senha é requerida';
+    }
+    if (values.senha && values.senha.length < 8) {
       errors.senha = 'Senha precisa ter pelo menos 8 caracteres';
+    }
 
     return errors;
   };
-
   return (
     <div>
       <Formik
         onSubmit={onSubmit}
-        validationSchema={validationSchema}
-        // validate={validate}
+        validate={validate}
         validateOnMount
         validateOnChange
         initialValues={{
@@ -45,19 +43,14 @@ function MyLogin() {
             <label htmlFor="email">Email</label>
             <br />
             <Field id="email" name="email" type="email" className="input" />
-            {/* {errors.email && (
-              <Errors msg={`${errors.email} - sem ErrorMessage`} />
-            )} */}
-            <ErrorMessage name="email" component={Errors} />
+            {errors.email && <span>{errors.email} </span>}
+
             <br />
             <br />
             <label htmlFor="senha">Senha</label>
             <br />
             <Field id="senha" name="senha" type="password" className="input" />
-            {/* {errors.senha && (
-              <Errors msg={`${errors.senha} - sem ErrorMessage`} />
-            )} */}
-            <ErrorMessage name="senha" component={Errors} />
+            {errors.senha && <span>{errors.senha} </span>}
             <br />
             <br />
             <button
