@@ -3,8 +3,6 @@ import P from 'prop-types';
 import * as S from './style';
 
 function Errors({ msg = '', children = '' }) {
-  // console.log(msg !== '' ? msg : children);
-
   const text = msg !== '' ? msg : children;
   const [menssagem, aviso] = text.split('. ');
 
