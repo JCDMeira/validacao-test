@@ -5,9 +5,10 @@ import { GlobalStyle, Conteiner } from './global';
 
 function App() {
   return (
-    <>
+    <Conteiner>
+      <GlobalStyle />
       <MyLogin />
-    </>
+    </Conteiner>
   );
 }
 
