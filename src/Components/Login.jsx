@@ -101,7 +101,6 @@ const WithMaterialUI = () => {
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 error={Boolean(formik.errors.email)}
-                // helperText={formik.errors.email}
               />
               {formik.errors.email && <Errors msg={`${formik.errors.email}`} />}
               <TextField
@@ -116,7 +115,6 @@ const WithMaterialUI = () => {
                 value={formik.values.senha}
                 onChange={formik.handleChange}
                 error={Boolean(formik.errors.senha)}
-                // helperText={formik.errors.senha}
               />
 
               {formik.errors.senha && <Errors msg={`${formik.errors.senha}`} />}
